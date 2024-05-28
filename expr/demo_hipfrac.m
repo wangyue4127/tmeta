@@ -8,11 +8,11 @@ model    = {'nMeta','tRE-Meta','MIX-Meta','SYM-Meta','SKM-Meta','tMeta'};
 %% the result of model fitting
 load('hipfrac_org_dec.mat');
 fprintf('Fitting results of different models on the hipfrac dataset:\n')
-title_str = {'muhat','sigmahat','nuhat','-logLik','AIC','BIC','t_time','d_time'};
-fprintf('\n\t\t\t%s\t%s\t%s\t%s\t%5s\t%6s\t%9s\t%6s\n',title_str{:});
+title_str = {'muhat','sigmahat','nuhat','-logLik','BIC','time'};
+fprintf('\n\t\t\t%s\t%s\t%s\t%s\t%6s\t%7s\n',title_str{:});
 for i = 1:length(model)
-    fprintf('%-8s%9.3f %8.3f %10.3f %8.3f %8.3f %8.3f %8.3f %8.3f \n', ...
-        model{i},me{i}.mu,sqrt(me{i}.s2),me{i}.nu,me{i}.logL.*(-1),me{i}.AIC,me{i}.BIC,me{i}.time,me{i}.dtime);
+    fprintf('%-8s%9.3f %8.3f %10.3f %8.3f %8.3f %8.3f \n', ...
+        model{i},me{i}.mu,sqrt(me{i}.s2),me{i}.nu,me{i}.logL.*(-1),me{i}.BIC,me{i}.time+me{i}.dtime);
 end
 
 %% plot

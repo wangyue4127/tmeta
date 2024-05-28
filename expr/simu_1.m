@@ -1,7 +1,7 @@
 function [tme,t_cpu,opts]=simu_1(y,es2,ini)
 disp_it = 0; num = 3; Ndata = length(y);
 %% tMeta
-opts = []; opts.maxit = 5000; opts.disp_it = disp_it; opts.tol = 1e-8;nopts = opts;
+opts = []; opts.maxit = 100; opts.disp_it = disp_it; opts.tol = 1e-8;nopts = opts;
 
 time_start = cputime;
 [meini,opts]=Metaini(y,es2,ini,opts,21);
