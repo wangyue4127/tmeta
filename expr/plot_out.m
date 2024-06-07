@@ -1,8 +1,8 @@
-function plot_outm(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname)
-ml = length(m); nm = 5; ah = 5;
+function plot_out(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname)
+ml = length(m); nm = 5; ah = 5; dpr = 2;
 for j=1:ml
     %% t---tau
-    subplot(ml,nm,1+5*(j-1));
+    subplot(dpr,nm,1+5*(j-1));
     itau  = 1./tme.Tau{j};
     if tme.Nu(j)==inf; tme.Nu(j)=1e8; end
     k     = (1+1/tme.Nu(j))*betainv(alpha,tme.Nu(j)/2,1/2); k=1/k;
@@ -44,7 +44,7 @@ for j=1:ml
     ylabel('study sample');
     if j==1;tl=title('$t$Meta');end; set([tl],'Interpreter','latex');
     if j==2||ml==1
-        xl=xlabel('$$\mathrm E[\tau]$$');set([xl],'Interpreter','latex');
+        xl=xlabel('$$1/\mathrm E[\tau]$$');set([xl],'Interpreter','latex');
     end
     if strcmp(dataname, 'cdp')
         if j==2
@@ -54,7 +54,7 @@ for j=1:ml
     end
     %% tre-tau
     %tREMeta异常值识别图
-    subplot(ml,nm,2+5*(j-1))
+    subplot(dpr,nm,2+5*(j-1))
     [treomega.value,treomega.ID]=sort(tre.W{j},'descend');outID=treomega.ID(1:m(j));
     tau0=tre.W{j}; tau0(outID)=[];
     id0 = 1:Ndata(j);   id0(outID) =[];
@@ -69,7 +69,7 @@ for j=1:ml
     if j==2||ml==1;xl=xlabel('$$\omega^0_i/\omega_i$$');set([xl],'Interpreter','latex');end
 
     %% mix-meta
-    subplot(ml,nm,3+5*(j-1))
+    subplot(dpr,nm,3+5*(j-1))
     outID = find(mix.Prob{j}>0.9); mm = length(outID);
     %         [mix.value,mix.ID]=sort(mixme.prob(:,j),'descend');outID=mix.ID(1:m(j));
     tau0 = mix.Prob{j}; tau0(outID) = [];
@@ -92,7 +92,7 @@ for j=1:ml
     box on;
 
     %% tP-Meta
-    subplot(ml,nm,4+5*(j-1))
+    subplot(dpr,nm,4+5*(j-1))
     [tP.value,tP.ID] = sort(sym.P{j});
     id    = find(tP.value<[1:Ndata(j)]'*alpha/Ndata(j));
     outID = tP.ID(id); mf = length(outID);
@@ -110,7 +110,7 @@ for j=1:ml
     if j==2||ml==1;xl=xlabel('$$p$$-value'); set([xl],'Interpreter','latex');end
 
     %% tpmeta
-    subplot(ml,nm,5+5*(j-1));
+    subplot(dpr,nm,5+5*(j-1));
     [fP.value,fP.ID] = sort(skm.P{j});
     id    = find(fP.value<[1:Ndata(j)]'*alpha/Ndata(j));
     outID = fP.ID(id); mf = length(outID);

@@ -1,4 +1,4 @@
-% This code shows model fitting (Table 3) and outlier detection (Figure 5) for different methods on the original and extended fluoride datasets, 
+% This code shows model fitting (Table 3) and outlier detection (Figure 5) for different methods on the original and modified fluoride datasets, 
 % as well as a forest plot Figure 4 for the dataset.
 
 clc; clear all
@@ -16,7 +16,7 @@ for i = 1:length(model)
 end
 
 load('fluoride_ext_dec.mat');
-fprintf('Fitting results of different models on the extended fluoride dataset:\n')
+fprintf('Fitting results of different models on the modified fluoride dataset:\n')
 fprintf('\n\t\t\t%s\t%s\t%s\t%s\t%6s\t%7s\n',title_str{:});
 for i = 1:length(model)
     fprintf('%-8s%9.3f %8.3f %9.3f %9.3f %8.3f %8.3f \n', ...
@@ -25,10 +25,10 @@ end
 
 %% plot
 alpha = 0.05; m = [3,4];
-[Y,Hmu,Ci,err,ll_t,T,marS,Ndata,tme,tre,mix,skm,sym] = re(dataname);
+[Y,Hmu,Ci,err,ll_t,T,marS,Ndata,tme,tre,mix,skm,sym] = motheds_result(dataname);
 
 % forest plot and the change in log-likelihood by tmeta
 figure; fore(Y,Hmu,Ci,err,ll_t,marS,Ndata);
 
 %  outlier detection
-figure; plot_outm(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname);
+figure; plot_out(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname);

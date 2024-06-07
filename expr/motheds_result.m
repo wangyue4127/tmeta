@@ -1,5 +1,5 @@
 % this code shows the results on all the datasets in the paper, including model fitting, outlier detection, forest plots.
-function [Y,Hmu,Ci,error,ll_t,T,markerSizes,Ndata,Tme,Treme,Mixme,Fpme,Tpme]=re(dataname)
+function [Y,Hmu,Ci,error,ll_t,T,markerSizes,Ndata,Tme,Treme,Mixme,Fpme,Tpme] = merge_results(dataname)
 addpath('result');
 switch dataname
     case 'cdp'

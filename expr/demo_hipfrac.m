@@ -17,9 +17,9 @@ end
 
 %% plot
 alpha = 0.05; m = 1;
-[Y,Hmu,Ci,err,ll_t,T,marS,Ndata,tme,tre,mix,skm,sym] = re(dataname);
+[Y,Hmu,Ci,err,ll_t,T,marS,Ndata,tme,tre,mix,skm,sym] = motheds_result(dataname);
 % forest plot and the change in log-likelihood by tmeta
 figure; fore(Y,Hmu,Ci,err,ll_t,marS,Ndata);
 
 %  outlier detection
-figure; plot_outm(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname);
+figure; plot_out(tme,tre,mix,skm,sym,m,alpha,Ndata,dataname);
